@@ -16,17 +16,17 @@ terraform {
 
 # TODO: The region is hardcoded -- make it a variable
 provider "aws" {
-  region = "us-east-1"
+  region = var.aws_region
 }
 
 # TODO: The bucket name is hardcoded -- make it use variables
 resource "aws_s3_bucket" "data" {
-  bucket = "shopsmart-dev-data"
+  bucket = var.bucket_name
 
   # TODO: These tags are hardcoded -- make them use variables
   tags = {
-    Environment = "dev"
-    Project     = "shopsmart"
-    ManagedBy   = "terraform"
+    Environment = var.environment
+    Project     = var.project
+    ManagedBy   = var.managed_by
   }
 }
